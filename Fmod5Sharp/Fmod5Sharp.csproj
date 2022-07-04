@@ -4,7 +4,7 @@
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <Configurations>Release;Debug</Configurations>
-        <Platforms>x86;x64;AnyCPU</Platforms>
+        <Platforms>AnyCPU</Platforms>
         <Version>2.0.1</Version>
         <PackageId>Fmod5Sharp</PackageId>
         <RepositoryType>git</RepositoryType>
@@ -12,16 +12,15 @@
         <Description>Decoder for FMOD 5 sound banks (FSB files)</Description>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <TargetFrameworks>net6.0;netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>net6.0</TargetFrameworks>
         <LangVersion>10</LangVersion>
         <IsTrimmable>true</IsTrimmable>
         <DebugType>embedded</DebugType>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="NAudio.Core" Version="2.0.0" />
+      <PackageReference Include="NAudio.Core" Version="2.1.0" />
       <PackageReference Include="OggVorbisEncoder" Version="1.2.0" />
-      <PackageReference Include="rubendal.BitStream" Version="1.2.0" />
       <PackageReference Include="System.Text.Json" Version="6.0.5" />
     </ItemGroup>
 
@@ -32,6 +31,12 @@
 
     <ItemGroup>
       <EmbeddedResource Include="Util\vorbis_headers_converted.json" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+      <PackageReference Include="Sewer56.BitStream">
+        <Version>1.2.0</Version>
+      </PackageReference>
     </ItemGroup>
 
 </Project>
